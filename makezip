@@ -1,0 +1,15 @@
+#!/bin/bash
+
+files=$(git diff master default --name-only)
+
+tag=$(git describe --abbrev=0 --tags)
+
+for line in $files
+do
+	extension="${line##*.}"
+	extension=${extension,,}
+	if [[ $extension =~ ^(png|mcmeta)$ ]]; then
+		echo $line;
+		zip -q -9 'butt.'"$tag"'.zip' $line
+	fi
+done
