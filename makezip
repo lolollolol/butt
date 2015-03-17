@@ -8,7 +8,7 @@ for line in $files
 do
 	extension="${line##*.}"
 	extension=${extension,,}
-	if [[ $extension =~ ^(png|mcmeta|properties)$ ]]; then
+	if [[ $extension =~ ^(png|mcmeta|properties|json)$ ]]; then
 		echo $line;
 		zip -q -9 'butt.'"$tag"'.zip' $line
 	fi
